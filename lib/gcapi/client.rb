@@ -18,11 +18,11 @@ module Gcapi
     end
 
     # Delegate the verbs methods to connection
-    #[ :get, :post, :put, :delete, :head ].each do |meth|
-      #define_method(meth) do |*args|
-        #res = connection.public_send(meth, *args)
-      #end
-    #end
+    [ :get, :post, :put, :delete, :head ].each do |meth|
+      define_method(meth) do |*args|
+        res = connection.public_send(meth, *args)
+      end
+    end
 
     private
     attr_reader :account_id, :access_token, :refresh_token, :url
