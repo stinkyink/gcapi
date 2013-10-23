@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require 'faraday'
+require 'json'
+
+json_config    = JSON.parse(open(ENV.fetch("GCAPI_CONFIG")).read)["web"]
+
+client_id     = json_config.fetch("client_id")
+client_secret = json_config.fetch("client_secret")
+redirect_uri  = json_config.fetch("redirect_uris").first
+auth_uri      = json_config.fetch("auth_uri")
+
+token = ENV.fetch("GCAPI_TOKEN") do
+  
+  puts "Authentication token missing"
+  puts "==="
+  puts "Visit the following url to get one then add it to the environment as GCAPI_TOKEN:"
+  url = "#{auth_uri}?"\
+        "client_id=#{client_id}&"\
+        "scope=https://www.googleapis.com/auth/structuredcontent&"\
+        "redirect_uri=#{redirect_uri}&"\
+        "response_type=code&"\
+        "approval_prompt=force&"\
+        "access_type=offline"
+
+  puts URI.encode(url)
+  exit
+end
+
+conn = Faraday.new(url: 'https://accounts.google.com', ssl: {verify: false}) do |f|
+  f.request  :url_encoded
+  f.response :logger
+  f.adapter  Faraday.default_adapter
+end
+
+result = conn.post '/o/oauth2/token', {
+  'code'          => token,
+  'client_id'     => client_id,
+  'client_secret' => client_secret,
+  'redirect_uri'  => redirect_uri,
+  'grant_type'    => 'authorization_code'
+}
+
+puts result.body.inspect
