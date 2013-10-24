@@ -1,6 +1,8 @@
 # Gcapi
 
-TODO: Write a gem description
+Unofficial Wrapper for the Google Content for Shopping API
+
+Definately ALPHA quality
 
 ## Installation
 
@@ -18,7 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+| Environment Variable     | Description                                              |
+|--------------------------|----------------------------------------------------------|
+| GCAPI_CONFIG             | OAuth 2.0 Client ID JSON from Google Cloud console       |
+| GCAPI_REFRESH_TOKEN      | Create one using ./bin/gcapi-get-token                   |
+| GCAPI_ACCOUNT_ID         | Google Shopping Merchant ID                              |
+| GCAPI_SHOPPING_URI       | ihttps://content.googleapis.com/content/v1/#{account_id} |
+
 
 ## Contributing
 
