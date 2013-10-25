@@ -18,15 +18,18 @@ Or install it yourself as:
 
     $ gem install gcapi
 
-## Usage
+## Configuration
 
-| Environment Variable     | Description                                              |
-|--------------------------|----------------------------------------------------------|
-| GCAPI_CONFIG             | OAuth 2.0 Client ID JSON from Google Cloud console       |
-| GCAPI_REFRESH_TOKEN      | Create one using ./bin/gcapi-get-token                   |
-| GCAPI_ACCOUNT_ID         | Google Shopping Merchant ID                              |
-| GCAPI_SHOPPING_URI       | ihttps://content.googleapis.com/content/v1/#{account_id} |
-
+```ruby
+# config/initializers/datacash.rb
+Gcapi.configure do |config|
+  config.client_id = "123456"
+  config.client_secret = "password1234"
+  config.refresh_token = "tokenABC"
+end
+# or
+Gcapi.configuration.client_id = "123456"
+```
 
 ## Contributing
 
