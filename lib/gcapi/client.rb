@@ -4,7 +4,7 @@ module Gcapi
 
     def initialize(options={})
       @access_token = options.fetch(:access_token, '')
-      @account_id   = options.fetch(:account_id, '').to_s
+      @account_id  = options.fetch(:account_id, Gcapi.configuration.account_id)
     end
 
     def shopping_account_uri
