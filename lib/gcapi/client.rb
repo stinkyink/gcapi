@@ -25,9 +25,7 @@ module Gcapi
       define_method(meth) do |*args|
         begin
           res = connection.public_send(meth, *args)
-          if res.status == 401
-            raise InvalidToken 
-          end
+          raise InvalidToken if res.status == 401
           res
         rescue InvalidToken
           self.access_token = Authentication.new.request_new_token
