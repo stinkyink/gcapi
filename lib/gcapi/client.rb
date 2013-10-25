@@ -1,9 +1,14 @@
 module Gcapi
   class Client
-    SHOPPING_URI = "https://content.googleapis.com/content/v1"
+    SHOPPING_URI = "https://content.googleapis.com/content/v1/"
 
     def initialize(options={})
       @access_token = options.fetch(:access_token, '')
+      @account_id   = options.fetch(:account_id, '').to_s
+    end
+
+    def shopping_account_uri
+      URI.join(SHOPPING_URI, account_id)
     end
 
     def connection
@@ -32,6 +37,6 @@ module Gcapi
     end
 
     private
-    attr_accessor :access_token
+    attr_accessor :access_token, :account_id
   end
 end

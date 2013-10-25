@@ -3,7 +3,12 @@ require_relative 'spec_helper'
 describe Gcapi::Client do
 
   it "has a default shopping uri" do
-    Gcapi::Client::SHOPPING_URI.must_equal "https://content.googleapis.com/content/v1"
+    Gcapi::Client::SHOPPING_URI.must_equal "https://content.googleapis.com/content/v1/"
+  end
+
+  it "has a shopping uri with account" do
+    client = Gcapi::Client.new(account_id: 12345)
+    client.shopping_account_uri.to_s.must_equal "https://content.googleapis.com/content/v1/12345"
   end
 
   describe "listing products" do
