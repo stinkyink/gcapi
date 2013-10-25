@@ -12,7 +12,7 @@ module Gcapi
     end
 
     def connection
-      Faraday.new(url: SHOPPING_URI) do |conn|
+      Faraday.new(url: shopping_account_uri) do |conn|
         conn.request :oauth2, access_token
         conn.response :xml,  :content_type => /\bxml$/
         conn.response :json, :content_type => /\bjson$/
