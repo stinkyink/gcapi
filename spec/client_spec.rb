@@ -1,6 +1,11 @@
 require_relative 'spec_helper'
 
 describe Gcapi::Client do
+
+  it "has a default shopping uri" do
+    Gcapi::Client::SHOPPING_URI.must_equal "https://content.googleapis.com/content/v1"
+  end
+
   describe "listing products" do
     before do 
       VCR.insert_cassette "listing products"
