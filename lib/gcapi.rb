@@ -17,10 +17,6 @@ module Gcapi
     has :client_secret
     has :account_id
     has :refresh_token
-    has :dry_run, values: [true, false], default: false
-    has :shopping_uri, 
-        default: "https://content.googleapis.com/content/v1"
-    has :token_uri, 
-        default: "https://accounts.google.com/o/oauth2/token"
+    has :dry_run, values: [true, false], default: true
   end
 end
